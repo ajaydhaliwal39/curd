@@ -1,0 +1,178 @@
+<!--  
+
+
+ <form [formGroup]=addEmployees (ngSubmit)="onSubmit()">
+
+
+        <div class="form_feilds lbl">
+            <div class="form_grup">
+              
+              
+            
+            <div class="form_grup">
+              <mat-form-field appearance="fill">
+                <label>Name:</label>
+                <input matInput type="text" placeholder="Enter your name" class="form_control"
+                  formControlName="name" restrictSpace>
+              </mat-form-field>
+              <mat-error *ngIf="
+                      submitted &&
+                      addEmployees.controls['name'].hasError('required')
+                      ">Name is required.</mat-error>
+            </div>
+
+            <div class="form_grup">
+              <mat-form-field appearance="fill">
+                <label>Email:</label>
+                <input matInput type="" placeholder="pat@example.com" class="form_control"
+                  formControlName="email" restrictSpace>
+              </mat-form-field>
+              <mat-error *ngIf="
+                      submitted &&
+                      addEmployees.controls['email'].hasError('required')
+                      ">Email is required.</mat-error>
+            </div>
+            
+            <div class="form_grup">
+              <mat-form-field appearance="fill">
+                <label>Phone:</label>
+                <input matInput type="number" placeholder="Enter your phone number" class="form_control"
+                  formControlName="phone" restrictSpace>
+              </mat-form-field>
+              <mat-error *ngIf="
+                      submitted &&
+                      addEmployees.controls['phone'].hasError('required')
+                      ">Phone is required.</mat-error>
+            </div>
+    
+            <div class="form_grup">
+                <mat-form-field appearance="fill">
+                  <mat-label>DOB:</mat-label>
+         
+                  <input matInput [matDatepicker]="picker">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+
+                </mat-form-field>
+                
+                <mat-error *ngIf="
+                        submitted &&
+                        addEmployees.controls['dob'].hasError('required')
+                        ">DOB is required.</mat-error>
+              </div>
+    
+              <div class="form_grup">
+                <mat-form-field appearance="fill">
+                  <label>countryCode:</label>
+                  <input  matInput formControlName="countrycode"(countryChange)="true" 
+         ng2TelInput   placeholder="select country code">
+                      </mat-form-field>
+    
+                <mat-error *ngIf="
+                        submitted &&
+                        addEmployees.controls['countryCode'].hasError('required')
+                        ">countryCode is required.</mat-error>
+           </div>
+    
+              <div class="form_grup">
+                <mat-form-field appearance="fill">
+                  <label>Address:</label>
+                  <input matInput type="text" placeholder="Enter your address" class="form_control"
+                    formControlName="address" restrictSpace
+                    type="text"
+                    [(ngModel)]="autocompleteInput">
+                </mat-form-field>
+                <mat-error *ngIf="
+                        submitted &&
+                        addEmployees.controls['address'].hasError('required')
+                        ">Address is required.</mat-error>
+                </div>
+    
+          <button type="submit" class="btn btn-primary">Submit</button>
+    
+            </div>
+            
+ <div #mapContainer id="map"></div>
+    
+        
+    
+          -->
+<mat-card>
+  <h1 *ngIf="type">Add User</h1>
+  <h1 *ngIf="!type">Edit User</h1>
+  <h1 *ngIf="!type">View User</h1>
+  <h1>Form &nbsp;<button class="btn-btn" [routerLink]="'/'">Back</button></h1>&nbsp;
+  <form [formGroup]="addEmployees">
+   
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" placeholder="Enter your name">
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['name'].hasError('required')">
+Name is required
+</mat-error>
+
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>DOB</mat-label>
+      <input matInput formControlName="dob" [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['dob'].hasError('required')">
+DOB is required
+</mat-error>
+
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Ex. ema@gmail.com">
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['email'].hasError('required')">
+    Eamil is required
+</mat-error>
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>Phone</mat-label>
+
+      <input type="number" matInput formControlName="phone" placeholder="xxxxx xxxxx">
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['phone'].hasError('required')">
+    Phone is required
+</mat-error>
+
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>countryCode</mat-label>
+      <input matInput formControlName="countrycode" (countryChange)="true" ngxintltelinput
+        placeholder="select country code">
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['countrycode'].hasError('required')">
+    country is required
+</mat-error>
+
+    <mat-form-field class="example-width" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input #addresstext matInput  type="addresstext" placeholder="Address" formControlName="address"
+        ng-autocomplete options="options" (onAddressChange)="handleAddressChange($event)" />
+    </mat-form-field>
+    <mat-error *ngIf="
+    submitted &&
+    addEmployees.controls['address'].hasError('required')">
+    Address is required
+</mat-error>
+
+     <div *ngIf="type !== 'view'">
+    <button  (click)="onSubmit()" class="btn" mat-raised-button color="primary" >Submit</button>
+  </div>
+  </form>
+  <!-- <button mat-raised-button color="warn" (click)="update()" >Update</button> -->
+</mat-card>

@@ -1,0 +1,16 @@
+.navbar {
+    justify-content: space-between;
+}
+
+span {
+    padding-right: 1rem;
+}
+
+button {
+    scroll-padding-block-start: initial;
+}
+/* 
+.map {
+    height: 500px;
+    width: 100%;
+} */

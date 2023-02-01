@@ -1,0 +1,18 @@
+
+
+<mat-toolbar  class="navbar">
+    <div>Angular</div>
+    <div>
+        <button  mat-stroked-button color="white" style="margin:4px;"  [routerLink]="['merchant/add']">add-employee</button>
+        <button mat-stroked-button color="white"[routerLink]="['list-merchant']">list-merchant</button>
+      
+    
+    </div>
+    <!-- <h1>
+        {{phone_number}}
+      </h1>
+      <ngx-intl-tel-input (value)="phone_number"></ngx-intl-tel-input> -->
+    </mat-toolbar>
+    <div class="map"#mapElement></div>
+    
+    <router-outlet></router-outlet>
